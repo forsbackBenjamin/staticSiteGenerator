@@ -37,7 +37,7 @@ def text_node_to_html_node(text_node):
 
 
 def extract_markdown_images(text):
-    return re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+    return re.findall(r"!\[([^\[\]]*)\] \(([^\(\)]*)\)", text)
 
 def extract_markdown_links(text):
     return re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
@@ -92,10 +92,5 @@ def text_to_textnodes(text):
     nodes = split_nodes_delimiter(nodes, "`", TextType.CODE)
     return nodes
 
-def markdown_to_blocks(markdown):
-    blocks = markdown.split("\n\n").strip()
-    for block in blocks:
-        if block == "":
-            blocks.remove(block)
-    return block
+
     

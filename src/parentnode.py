@@ -11,5 +11,6 @@ class ParentNode(HTMLNode):
             raise ValueError("ParentNode must have children!")
         html_str = f"<{self.tag}>"
         for child in self.children:
+            print(child)
             html_str = html_str + child.to_html()
         return html_str + f"</{self.tag}>"

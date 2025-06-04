@@ -10,15 +10,15 @@ class BlockType(Enum):
 
 def markdown_to_blocks(markdown):
     blocks = markdown.split("\n\n")
+    blocks = list(map(lambda x: x.strip(), blocks))
     for block in blocks:
-        block = block.strip()
         if block == "":
             blocks.remove(block)
-    return block
+    return blocks
 
 def block_to_block_type(block):
     if block[0] == "#":
-        if len(block) > 6 and block[0:6] != "#######":
+        if len(block) > 6 and block[0:7] != "#######":
             return BlockType.HEADING
         elif len(block) <= 6:
             return BlockType.HEADING
@@ -28,6 +28,7 @@ def block_to_block_type(block):
     is_quote = True
     is_u_list = True
     is_o_list = True
+    
     for line in block_lines:
         if line[0] != ">":
             is_quote = False
